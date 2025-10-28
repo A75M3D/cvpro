@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بروفايل - منصة البروفايل الاحترافية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: 'rgb(var(--color-primary) / <alpha-value>)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --color-primary: 59 130 246;
+        }
+        
+        [data-theme="blue"] { --color-primary: 59 130 246; }
+        [data-theme="green"] { --color-primary: 34 197 94; }
+        [data-theme="purple"] { --color-primary: 168 85 247; }
+        [data-theme="red"] { --color-primary: 239 68 68; }
+        [data-theme="orange"] { --color-primary: 249 115 22; }
+        [data-theme="teal"] { --color-primary: 20 184 166; }
+        [data-theme="indigo"] { --color-primary: 99 102 241; }
+        [data-theme="pink"] { --color-primary: 236 72 153; }
+        [data-theme="yellow"] { --color-primary: 234 179 8; }
+        [data-theme="cyan"] { --color-primary: 6 182 212; }
+        
+        .theme-transition {
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 theme-transition" data-theme="blue">
+    <!-- الصفحة الرئيسية -->
+    <div id="landing-page" class="min-h-screen">
+        <!-- شريط التنقل -->
+        <nav class="bg-white dark:bg-gray-800 shadow-md theme-transition">
+            <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+                <div class="flex items-center space-x-2 space-x-reverse">
+                    <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+                        <i class="fas fa-user-graduate text-white"></i>
+                    </div>
+                    <span class="text-xl font-bold text-gray-800 dark:text-white">بروفايل</span>
+                </div>
+                
+                <div class="flex items-center space-x-4 space-x-reverse">
+                    <button id="theme-toggle" class="p-2 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button id="language-toggle" class="p-2 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200">
+                        <span>EN</span>
+                    </button>
+                    <button id="login-btn" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition">
+                        <span class="ar-text">تسجيل الدخول</span>
+                        <span class="en-text hidden">Login</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- قسم الهيرو -->
+        <section class="py-20 bg-gradient-to-r from-primary to-blue-600 text-white">
+            <div class="container mx-auto px-4 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                    <span class="ar-text">أنشئ بروفايلك الاحترافي</span>
+                    <span class="en-text hidden">Build Your Professional Profile</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto">
+                    <span class="ar-text">عرض شهاداتك ومهاراتك وخبراتك في منصة واحدة متكاملة</span>
+                    <span class="en-text hidden">Showcase your certificates, skills and experiences in one integrated platform</span>
+                </p>
+                <div class="flex justify-center space-x-4 space-x-reverse">
+                    <button id="get-started-btn" class="bg-white text-primary px-8 py-3 rounded-lg text-lg font-semibold hover:bg-gray-100 transition">
+                        <span class="ar-text">ابدأ الآن</span>
+                        <span class="en-text hidden">Get Started</span>
+                    </button>
+                    <button class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-white hover:bg-opacity-10 transition">
+                        <span class="ar-text">تعرف أكثر</span>
+                        <span class="en-text hidden">Learn More</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- الميزات -->
+        <section class="py-20 bg-white dark:bg-gray-800 theme-transition">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-16 text-gray-800 dark:text-white">
+                    <span class="ar-text">ميزات منصتنا</span>
+                    <span class="en-text hidden">Our Features</span>
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl shadow-md theme-transition">
+                        <div class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-certificate text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white">
+                            <span class="ar-text">إدارة الشهادات</span>
+                            <span class="en-text hidden">Certificates Management</span>
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            <span class="ar-text">رفع وإدارة جميع شهاداتك الأكاديمية والمهنية في مكان واحد</span>
+                            <span class="en-text hidden">Upload and manage all your academic and professional certificates in one place</span>
+                        </p>
+                    </div>
+                    
+                    <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl shadow-md theme-transition">
+                        <div class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-qrcode text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white">
+                            <span class="ar-text">مشاركة سهلة</span>
+                            <span class="en-text hidden">Easy Sharing</span>
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            <span class="ar-text">شارك بروفايلك عبر رابط مخصص أو رمز QR مع جهات العمل</span>
+                            <span class="en-text hidden">Share your profile with employers via a custom link or QR code</span>
+                        </p>
+                    </div>
+                    
+                    <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl shadow-md theme-transition">
+                        <div class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-palette text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white">
+                            <span class="ar-text">تخصيص كامل</span>
+                            <span class="en-text hidden">Full Customization</span>
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            <span class="ar-text">اختر من بين 10 ألوان رئيسية ووضع التصميم الفاتح أو الداكن</span>
+                            <span class="en-text hidden">Choose from 10 primary colors and light or dark mode</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- كيفية العمل -->
+        <section class="py-20 bg-gray-50 dark:bg-gray-900 theme-transition">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-16 text-gray-800 dark:text-white">
+                    <span class="ar-text">كيفية العمل</span>
+                    <span class="en-text hidden">How It Works</span>
+                </h2>
+                
+                <div class="max-w-4xl mx-auto">
+                    <div class="flex flex-col md:flex-row items-center mb-12">
+                        <div class="md:w-1/3 flex justify-center mb-6 md:mb-0">
+                            <div class="w-24 h-24 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold">1</div>
+                        </div>
+                        <div class="md:w-2/3 text-center md:text-right">
+                            <h3 class="text-2xl font-bold mb-3 text-gray-800 dark:text-white">
+                                <span class="ar-text">أنشئ حسابك</span>
+                                <span class="en-text hidden">Create Your Account</span>
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-300 text-lg">
+                                <span class="ar-text">سجل في المنصة باستخدام بريدك الإلكتروني وابدأ فورًا</span>
+                                <span class="en-text hidden">Register on the platform using your email and start immediately</span>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col md:flex-row items-center mb-12">
+                        <div class="md:w-1/3 flex justify-center mb-6 md:mb-0 order-2 md:order-1">
+                            <div class="w-24 h-24 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold">2</div>
+                        </div>
+                        <div class="md:w-2/3 text-center md:text-left order-1 md:order-2">
+                            <h3 class="text-2xl font-bold mb-3 text-gray-800 dark:text-white">
+                                <span class="ar-text">أضف محتواك</span>
+                                <span class="en-text hidden">Add Your Content</span>
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-300 text-lg">
+                                <span class="ar-text">ارفع شهاداتك، مهاراتك، وخبراتك مع روابط التحقق</span>
+                                <span class="en-text hidden">Upload your certificates, skills, and experiences with verification links</span>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/3 flex justify-center mb-6 md:mb-0">
+                            <div class="w-24 h-24 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold">3</div>
+                        </div>
+                        <div class="md:w-2/3 text-center md:text-right">
+                            <h3 class="text-2xl font-bold mb-3 text-gray-800 dark:text-white">
+                                <span class="ar-text">شارك بروفايلك</span>
+                                <span class="en-text hidden">Share Your Profile</span>
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-300 text-lg">
+                                <span class="ar-text">استخدم الرابط المخصص أو رمز QR لمشاركة بروفايلك مع الآخرين</span>
+                                <span class="en-text hidden">Use the custom link or QR code to share your profile with others</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- تذييل الصفحة -->
+        <footer class="bg-gray-800 text-white py-12">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-6 md:mb-0">
+                        <div class="flex items-center space-x-2 space-x-reverse mb-4">
+                            <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+                                <i class="fas fa-user-graduate text-white"></i>
+                            </div>
+                            <span class="text-xl font-bold">بروفايل</span>
+                        </div>
+                        <p class="text-gray-400 max-w-md">
+                            <span class="ar-text">منصة احترافية لعرض الشهادات والمهارات والخبرات بطريقة منظمة وجذابة</span>
+                            <span class="en-text hidden">A professional platform to showcase certificates, skills and experiences in an organized and attractive way</span>
+                        </p>
+                    </div>
+                    
+                    <div class="flex space-x-4 space-x-reverse">
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                    <p>
+                        <span class="ar-text">© 2023 بروفايل. جميع الحقوق محفوظة.</span>
+                        <span class="en-text hidden">© 2023 Profile. All rights reserved.</span>
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- صفحة تسجيل الدخول -->
+    <div id="login-page" class="min-h-screen bg-gray-50 dark:bg-gray-900 hidden theme-transition">
+        <div class="container mx-auto px-4 py-12">
+            <div class="max-w-md mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden theme-transition">
+                <div class="p-8">
+                    <div class="text-center mb-8">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-user-graduate text-white text-2xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-800 dark:text-white">
+                            <span class="ar-text">تسجيل الدخول</span>
+                            <span class="en-text hidden">Login</span>
+                        </h2>
+                    </div>
+                    
+                    <form id="login-form">
+                        <div class="mb-4">
+                            <label class="block text-gray-700 dark:text-gray-300 mb-2" for="login-email">
+                                <span class="ar-text">البريد الإلكتروني</span>
+                                <span class="en-text hidden">Email</span>
+                            </label>
+                            <input type="email" id="login-email" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-white dark:bg-gray-700 text-gray-800 dark:text-white" required>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-gray-700 dark:text-gray-300 mb-2" for="login-password">
+                                <span class="ar-text">كلمة المرور</span>
+                                <span class="en-text hidden">Password</span>
+                            </label>
+                            <input type="password" id="login-password" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-white dark:bg-gray-700 text-gray-800 dark:text-white" required>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-primary text-white py-2 rounded-lg hover:bg-opacity-90 transition font-semibold">
+                            <span class="ar-text">تسجيل الدخول</span>
+                            <span class="en-text hidden">Login</span>
+                        </button>
+                    </form>
+                    
+                    <div class="mt-6 text-center">
+                        <p class="text-gray-600 dark:text-gray-400">
+                            <span class="ar-text">ليس لديك حساب؟</span>
+                            <span class="en-text hidden">Don't have an account?</span>
+                            <a href="#" id="show-register" class="text-primary font-semibold hover:underline mr-1">
+                                <span class="ar-text">سجل الآن</span>
+                                <span class="en-text hidden">Register now</span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- صفحة التسجيل -->
+    <div id="register-page" class="min-h-screen bg-gray-50 dark:bg-gray-900 hidden theme-transition">
+        <div class="container mx-auto px-4 py-12">
+            <div class="max-w-md mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden theme-transition">
+                <div class="p-8">
+                    <div class="text-center mb-8">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-user-plus text-white text-2xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-800 dark:text-white">
+                            <span class="ar-text">إنشاء حساب جديد</span>
+                            <span class="en-text hidden">Create New Account</span>
+                        </h2>
+                    </div>
+                    
+                    <form id="register-form">
+                        <div class="mb-4">
+                            <label class="block text-gray-700 dark:text-gray-300 mb-2" for="register-name">
+                                <span class="ar-text">الاسم الكامل</span>
+                                <span class="en-text hidden">Full Name</span>
+                            </label>
+                            <input type="text" id="register-name" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-white dark:bg-gray-700 text-gray-800 dark:text-white" required>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="block text-gray-700 dark:text-gray-300 mb-2" for="register-email">
+                                <span class="ar-text">البريد الإلكتروني</span>
+                                <span class="en-text hidden">Email</span>
+                            </label>
+                            <input type="email" id="register-email" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-white dark:bg-gray-700 text-gray-800 dark:text-white" required>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-gray-700 dark:text-gray-300 mb-2" for="register-password">
+                                <span class="ar-text">كلمة المرور</span>
+                                <span class="en-text hidden">Password</span>
+                            </label>
+                            <input type="password" id="register-password" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-white dark:bg-gray-700 text-gray-800 dark:text-white" required>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-primary text-white py-2 rounded-lg hover:bg-opacity-90 transition font-semibold">
+                            <span class="ar-text">إنشاء الحساب</span>
+                            <span class="en-text hidden">Create Account</span>
+                        </button>
+                    </form>
+                    
+                    <div class="mt-6 text-center">
+                        <p class="text-gray-600 dark:text-gray-400">
+                            <span class="ar-text">لديك حساب بالفعل؟</span>
+                            <span class="en-text hidden">Already have an account?</span>
+                            <a href="#" id="show-login" class="text-primary font-semibold hover:underline mr-1">
+                                <span class="ar-text">تسجيل الدخول</span>
+                                <span class="en-text hidden">Login</span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- لوحة التحكم -->
+    <div id="dashboard" class="min-h-screen bg-gray-50 dark:bg-gray-900 hidden theme-transition">
+        <!-- شريط التنعل العلوي -->
+        <nav class="bg-white dark:bg-gray-800 shadow-md theme-transition">
+            <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+                <div class="flex items-center space-x-2 space-x-reverse">
+                    <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+                        <i class="fas fa-user-graduate text-white"></i>
+                    </div>
+                    <span class="text-xl font-bold text-gray-800 dark:text-white">بروفايل</span>
+                </div>
+                
+                <div class="flex items-center space-x-4 space-x-reverse">
+                    <button id="dashboard-theme-toggle" class="p-2 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button id="dashboard-language-toggle" class="p-2 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200">
+                        <span>EN</span>
+                    </button>
+                    <div class="relative" id="user-menu">
+                        <button class="flex items-center space-x-2 space-x-reverse text-gray-700 dark:text-gray-200">
+                            <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <span id="user-name">المستخدم</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        
+                        <div class="absolute left-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg py-2 z-10 hidden" id="user-dropdown">
+                            <a href="#" class="block px-4 py-2 text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                                <span class="ar-text">الملف الشخصي</span>
+                                <span class="en-text hidden">Profile</span>
+                            </a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700" id="settings-btn">
+                                <span class="ar-text">الإعدادات</span>
+                                <span class="en-text hidden">Settings</span>
+                            </a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700" id="admin-panel-btn">
+                                <span class="ar-text">لوحة الأدمن</span>
+                                <span class="en-text hidden">Admin Panel</span>
+                            </a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700" id="logout-btn">
+                                <span class="ar-text">تسجيل الخروج</span>
+                                <span class="en-text hidden">Logout</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- محتوى لوحة التحكم -->
+        <div class="container mx-auto px-4 py-8">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                <!-- الشريط الجانبي -->
+                <div class="lg:col-span-1">
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 theme-transition">
+                        <!-- صورة الملف الشخصي -->
+                        <div class="flex flex-col items-center mb-6">
+                            <div class="w-32 h-32 bg-gray-200 dark:bg-gray-700 rounded-full mb-4 overflow-hidden">
+                                <img id="profile-image" src="" alt="Profile" class="w-full h-full object-cover hidden">
+                                <div id="profile-image-placeholder" class="w-full h-full flex items-center justify-center text-gray-500">
+                                    <i class="fas fa-user text-4xl"></i>
+                                </div>
+                            </div>
+                            <h2 id="profile-name" class="text-xl font-bold text-gray-800 dark:text-white text-center">الاسم الكامل</h2>
+                            <p id="profile-role" class="text-gray-600 dark:text-gray-400 text-center">الدور المهني</p>
+                            
+                            <button id="edit-profile-btn" class="mt-4 bg-primary text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition text-sm">
+                                <span class="ar-text">تعديل الملف الشخصي</span>
+                                <span class="en-text hidden">Edit Profile</span>
+                            </button>
+                        </div>
+                        
+                        <!-- الإحصائيات -->
+                        <div class="border-t border-gray-200 dark:border-gray-700 pt-4">
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="text-gray-600 dark:text-gray-400">
+                                    <span class="ar-text">الشهادات المرفوعة</span>
+                                    <span class="en-text hidden">Uploaded Certificates</span>
+                                </span>
+                                <span id="certificates-count" class="font-bold text-gray-800 dark:text-white">0/10</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="text-gray-600 dark:text-gray-400">
+                                    <span class="ar-text">المقبولة</span>
+                                    <span class="en-text hidden">Accepted</span>
+                                </span>
+                                <span id="accepted-count" class="font-bold text-green-600">0</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600 dark:text-gray-400">
+                                    <span class="ar-text">قيد المراجعة</span>
+                                    <span class="en-text hidden">Pending</span>
+                                </span>
+                                <span id="pending-count" class="font-bold text-yellow-600">0</span>
+                            </div>
+                        </div>
+                        
+                        <!-- روابط سريعة -->
+                        <div class="border-t border-gray-200 dark:border-gray-700 pt-4 mt-4">
+                            <h3 class="font-bold text-gray-800 dark:text-white mb-3">
+                                <span class="ar-text">روابط سريعة</span>
+                                <span class="en-text hidden">Quick Links</span>
+                            </h3>
+                            
+                            <div class="space-y-2">
+                                <a href="#" class="flex items-center space-x-2 space-x-reverse text-gray-600 dark:text-gray-400 hover:text-primary transition">
+                                    <i class="fas fa-eye w-5"></i>
+                                    <span>
+                                        <span class="ar-text">عرض البروفايل العام</span>
+                                        <span class="en-text hidden">View Public Profile</span>
+                                    </span>
+                                </a>
+                                
+                                <a href="#" class="flex items-center space-x-2 space-x-reverse text-gray-600 dark:text-gray-400 hover:text-primary transition" id="share-profile-btn">
+                                    <i class="fas fa-share-alt w-5"></i>
+                                    <span>
+                                        <span class="ar-text">مشاركة البروفايل</span>
+                                        <span class="en-text hidden">Share Profile</span>
+                                    </span>
+                                </a>
+                                
+                                <a href="#" class="flex items-center space-x-2 space-x-reverse text-gray-600 dark:text-gray-400 hover:text-primary transition" id="add-certificate-btn">
+                                    <i class="fas fa-plus w-5"></i>
+                                    <span>
+                                        <span class="ar-text">إضافة شهادة جديدة</span>
+                                        <span class="en-text hidden">Add New Certificate</span>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- المحتوى الرئيسي -->
+                <div class="lg:col-span-3">
+                    <!-- قسم الشهادات -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 mb-8 theme-transition">
+                        <div class="flex justify-between items-center mb-6">
+                            <h2 class="text-2xl font-bold text-gray-800 dark:text-white">
+                                <span class="ar-text">شهاداتي</span>
+                                <span class="en-text hidden">My Certificates</span>
+                            </h2>
+                            
+                            <button id="add-certificate-main-btn" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition flex items-center space-x-2 space-x-reverse">
+                                <i class="fas fa-plus"></i>
+                                <span>
+                                    <span class="ar-text">إضافة شهادة</span>
+                                    <span class="en-text hidden">Add Certificate</span>
+                                </span>
+                            </button>
+                        </div>
+                        
+                        <div id="certificates-list" class="space-y-4">
+                            <!-- سيتم ملء الشهادات ديناميكيًا -->
+                            <div class="text-center py-8 text-gray-500 dark:text-gray-400" id="no-certificates-message">
+                                <i class="fas fa-certificate text-4xl mb-4"></i>
+                                <p>
+                                    <span class="ar-text">لا توجد شهادات مرفوعة بعد</span>
+                                    <span class="en-text hidden">No certificates uploaded yet</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- قسم الخبرات -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 theme-transition">
+                        <div class="flex justify-between items-center mb-6">
+                            <h2 class="text-2xl font-bold text-gray-800 dark:text-white">
+                                <span class="ar-text">خبراتي</span>
+                                <span class="en-text hidden">My Experiences</span>
+                            </h2>
+                            
+                            <button id="add-experience-btn" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition flex items-center space-x-2 space-x-reverse">
+                                <i class="fas fa-plus"></i>
+                                <span>
+                                    <span class="ar-text">إضافة خبرة</span>
+                                    <span class="en-text hidden">Add Experience</span>
+                                </span>
+                            </button>
+                        </div>
+                        
+                        <div id="experiences-list" class="space-y-4">
+                            <!-- سيتم ملء الخبرات ديناميكيًا -->
+                            <div class="text-center py-8 text-gray-500 dark:text-gray-400" id="no-experiences-message">
+                                <i class="fas fa-briefcase text-4xl mb-4"></i>
+                                <p>
+                                    <span class="ar-text">لا توجد خبرات مضافة بعد</span>
+                                    <span class="en-text hidden">No experiences added yet</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة إضافة شهادة -->
+    <div id="add-certificate-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg w-full max-w-2xl mx-4 theme-transition">
+            <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                <h3 class="text-xl font-bold text-gray-800 dark:text-white">
+                    <span class="ar-text">إضافة شهادة جديدة</span>
+                    <span class="en-text hidden">Add New Certificate</span>
+                </h3>
+            </div>
+            
+            <form id="certificate-form" class="p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-gray-700 dark:text-gray-300 mb-2" for="certificate-title">
+                            <span class="ar-text">اسم الشهادة</span>
+                            <span class="en-text hidden">Certificate Title</span>
+                        </label>
+                        <input type="text" id="certificate-title" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-white dark:bg-gray-700 text-gray-800 dark:text-white" required>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-700 dark:text-gray-300 mb-2" for="certificate-issuer">
+                            <span class="ar-text">جهة الإصدار</span>
+                            <span class="en-text hidden">Issuing Authority</span>
+                        </label>
+                        <input type="text" id="certificate-issuer" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-white dark:bg-gray-700 text-gray-800 dark:text-white" required>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-gray-700 dark:text-gray-300 mb-2" for="certificate-date">
+                        <span class="ar-text">تاريخ الإصدار</span>
+                        <span class="en-text hidden">Issue Date</span>
+                    </label>
+                    <input type="date" id="certificate-date" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-white dark:bg-gray-700 text-gray-800 dark:text-white" required>
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-gray-700 dark:text-gray-300 mb-2" for="certificate-verify-url">
+                        <span class="ar-text">رابط التحقق (اختياري)</span>
+                        <span class="en-text hidden">Verification URL (Optional)</span>
+                    </label>
+                    <input type="url" id="certificate-verify-url" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-white dark:bg-gray-700 text-gray-800 dark:text-white">
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-gray-700 dark:text-gray-300 mb-2" for="certificate-skills">
+                        <span class="ar-text">المهارات المكتسبة (افصل بينها بفاصلة)</span>
+                        <span class="en-text hidden">Skills Gained (Separate with commas)</span>
+                    </label>
+                    <input type="text" id="certificate-skills" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-white dark:bg-gray-700 text-gray-800 dark:text-white" placeholder="HTML, CSS, JavaScript">
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-gray-700 dark:text-gray-300 mb-2" for="certificate-description">
+                        <span class="ar-text">وصف الشهادة</span>
+                        <span class="en-text hidden">Certificate Description</span>
+                    </label>
+                    <textarea id="certificate-description" rows="3" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-white dark:bg-gray-700 text-gray-800 dark:text-white"></textarea>
+                </div>
+                
+                <div class="mb-6">
+                    <label class="block text-gray-700 dark:text-gray-300 mb-2">
+                        <span class="ar-text">رفع صورة الشهادة</span>
+                        <span class="en-text hidden">Upload Certificate Image</span>
+                    </label>
+                    <div class="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-6 text-center">
+                        <i class="fas fa-cloud-upload-alt text-3xl text-gray-400 mb-2"></i>
+                        <p class="text-gray-500 dark:text-gray-400 mb-2">
+                            <span class="ar-text">اسحب وأفلت الصورة هنا أو</span>
+                            <span class="en-text hidden">Drag and drop image here or</span>
+                        </p>
+                        <label for="certificate-file" class="cursor-pointer bg-primary text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition inline-block">
+                            <span class="ar-text">اختر ملف</span>
+                            <span class="en-text hidden">Choose File</span>
+                        </label>
+                        <input type="file" id="certificate-file" class="hidden" accept="image/*,.pdf">
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
+                            <span class="ar-text">PNG, JPG, PDF حتى 5MB</span>
+                            <span class="en-text hidden">PNG, JPG, PDF up to 5MB</span>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="flex justify-end space-x-3 space-x-reverse">
+                    <button type="button" id="cancel-certificate" class="px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                        <span class="ar-text">إلغاء</span>
+                        <span class="en-text hidden">Cancel</span>
+                    </button>
+                    <button type="submit" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition">
+                        <span class="ar-text">إضافة الشهادة</span>
+                        <span class="en-text hidden">Add Certificate</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- نافذة الإعدادات -->
+    <div id="settings-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg w-full max-w-2xl mx-4 theme-transition">
+            <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                <h3 class="text-xl font-bold text-gray-800 dark:text-white">
+                    <span class="ar-text">الإعدادات</span>
+                    <span class="en-text hidden">Settings</span>
+                </h3>
+            </div>
+            
+            <div class="p-6">
+                <div class="mb-8">
+                    <h4 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">
+                        <span class="ar-text">المظهر</span>
+                        <span class="en-text hidden">Appearance</span>
+                    </h4>
+                    
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-gray-700 dark:text-gray-300">
+                            <span class="ar-text">الوضع الداكن</span>
+                            <span class="en-text hidden">Dark Mode</span>
+                        </span>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="dark-mode-toggle" class="sr-only peer">
+                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+                        </label>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <span class="block text-gray-700 dark:text-gray-300 mb-2">
+                            <span class="ar-text">اللون الرئيسي</span>
+                            <span class="en-text hidden">Primary Color</span>
+                        </span>
+                        <div class="grid grid-cols-5 gap-2">
+                            <div class="w-10 h-10 bg-blue-500 rounded-full cursor-pointer border-2 border-transparent theme-option" data-theme="blue"></div>
+                            <div class="w-10 h-10 bg-green-500 rounded-full cursor-pointer border-2 border-transparent theme-option" data-theme="green"></div>
+                            <div class="w-10 h-10 bg-purple-500 rounded-full cursor-pointer border-2 border-transparent theme-option" data-theme="purple"></div>
+                            <div class="w-10 h-10 bg-red-500 rounded-full cursor-pointer border-2 border-transparent theme-option" data-theme="red"></div>
+                            <div class="w-10 h-10 bg-orange-500 rounded-full cursor-pointer border-2 border-transparent theme-option" data-theme="orange"></div>
+                            <div class="w-10 h-10 bg-teal-500 rounded-full cursor-pointer border-2 border-transparent theme-option" data-theme="teal"></div>
+                            <div class="w-10 h-10 bg-indigo-500 rounded-full cursor-pointer border-2 border-transparent theme-option" data-theme="indigo"></div>
+                            <div class="w-10 h-10 bg-pink-500 rounded-full cursor-pointer border-2 border-transparent theme-option" data-theme="pink"></div>
+                            <div class="w-10 h-10 bg-yellow-500 rounded-full cursor-pointer border-2 border-transparent theme-option" data-theme="yellow"></div>
+                            <div class="w-10 h-10 bg-cyan-500 rounded-full cursor-pointer border-2 border-transparent theme-option" data-theme="cyan"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-8">
+                    <h4 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">
+                        <span class="ar-text">اللغة</span>
+                        <span class="en-text hidden">Language</span>
+                    </h4>
+                    
+                    <div class="flex space-x-4 space-x-reverse">
+                        <button class="language-option flex-1 py-2 border border-primary text-primary rounded-lg font-semibold" data-lang="ar">
+                            <span class="ar-text">العربية</span>
+                            <span class="en-text hidden">Arabic</span>
+                        </button>
+                        <button class="language-option flex-1 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg font-semibold" data-lang="en">
+                            <span class="ar-text">English</span>
+                            <span class="en-text hidden">English</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="flex justify-end">
+                    <button id="close-settings" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition">
+                        <span class="ar-text">حفظ</span>
+                        <span class="en-text hidden">Save</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة مشاركة البروفايل -->
+    <div id="share-profile-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg w-full max-w-md mx-4 theme-transition">
+            <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                <h3 class="text-xl font-bold text-gray-800 dark:text-white">
+                    <span class="ar-text">مشاركة البروفايل</span>
+                    <span class="en-text hidden">Share Profile</span>
+                </h3>
+            </div>
+            
+            <div class="p-6">
+                <div class="mb-6 text-center">
+                    <div id="qrcode" class="inline-block p-4 bg-white rounded-lg"></div>
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-gray-700 dark:text-gray-300 mb-2" for="profile-url">
+                        <span class="ar-text">رابط البروفايل</span>
+                        <span class="en-text hidden">Profile URL</span>
+                    </label>
+                    <div class="flex">
+                        <input type="text" id="profile-url" class="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-l-lg focus:outline-none bg-white dark:bg-gray-700 text-gray-800 dark:text-white" readonly value="https://profile.com/u/username">
+                        <button id="copy-url" class="bg-primary text-white px-4 py-2 rounded-r-lg hover:bg-opacity-90 transition">
+                            <span class="ar-text">نسخ</span>
+                            <span class="en-text hidden">Copy</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="flex justify-center space-x-4 space-x-reverse">
+                    <button id="download-qr" class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white px-4 py-2 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition flex items-center space-x-2 space-x-reverse">
+                        <i class="fas fa-download"></i>
+                        <span>
+                            <span class="ar-text">تحميل QR</span>
+                            <span class="en-text hidden">Download QR</span>
+                        </span>
+                    </button>
+                    <button id="open-qr" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition flex items-center space-x-2 space-x-reverse">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>
+                            <span class="ar-text">فتح QR</span>
+                            <span class="en-text hidden">Open QR</span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- لوحة الأدمن -->
+    <div id="admin-panel" class="min-h-screen bg-gray-50 dark:bg-gray-900 hidden theme-transition">
+        <!-- شريط التنقل -->
+        <nav class="bg-white dark:bg-gray-800 shadow-md theme-transition">
+            <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+                <div class="flex items-center space-x-2 space-x-reverse">
+                    <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+                        <i class="fas fa-user-shield text-white"></i>
+                    </div>
+                    <span class="text-xl font-bold text-gray-800 dark:text-white">لوحة الأدمن</span>
+                </div>
+                
+                <div class="flex items-center space-x-4 space-x-reverse">
+                    <button id="admin-theme-toggle" class="p-2 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button id="admin-language-toggle" class="p-2 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200">
+                        <span>EN</span>
+                    </button>
+                    <button id="back-to-dashboard" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition">
+                        <span class="ar-text">العودة للوحة التحكم</span>
+                        <span class="en-text hidden">Back to Dashboard</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- محتوى لوحة الأدمن -->
+        <div class="container mx-auto px-4 py-8">
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-gray-800 dark:text-white mb-2">
+                    <span class="ar-text">لوحة إدارة النظام</span>
+                    <span class="en-text hidden">System Admin Panel</span>
+                </h1>
+                <p class="text-gray-600 dark:text-gray-400">
+                    <span class="ar-text">إدارة الشهادات المعلقة والمستخدمين</span>
+                    <span class="en-text hidden">Manage pending certificates and users</span>
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- الشهادات المعلقة -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 theme-transition">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">
+                        <span class="ar-text">الشهادات المعلقة</span>
+                        <span class="en-text hidden">Pending Certificates</span>
+                    </h2>
+                    
+                    <div id="pending-certificates-list" class="space-y-4">
+                        <!-- سيتم ملء الشهادات المعلقة ديناميكيًا -->
+                        <div class="text-center py-8 text-gray-500 dark:text-gray-400" id="no-pending-certificates">
+                            <i class="fas fa-check-circle text-4xl mb-4"></i>
+                            <p>
+                                <span class="ar-text">لا توجد شهادات معلقة</span>
+                                <span class="en-text hidden">No pending certificates</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- إدارة المستخدمين -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 theme-transition">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">
+                        <span class="ar-text">إدارة المستخدمين</span>
+                        <span class="en-text hidden">Users Management</span>
+                    </h2>
+                    
+                    <div class="mb-4">
+                        <input type="text" id="user-search" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-white dark:bg-gray-700 text-gray-800 dark:text-white" placeholder="البحث عن مستخدم...">
+                    </div>
+                    
+                    <div id="users-list" class="space-y-4 max-h-96 overflow-y-auto">
+                        <!-- سيتم ملء المستخدمين ديناميكيًا -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // تهيئة Supabase
+        const SUPABASE_URL = 'https://your-project.supabase.co';
+        const SUPABASE_ANON_KEY = 'your-anon-key';
+        
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        
+        // حالة التطبيق
+        let currentUser = null;
+        let isAdmin = false;
+        let certificates = [];
+        let pendingCertificates = [];
+        let users = [];
+        
+        // عناصر DOM
+        const landingPage = document.getElementById('landing-page');
+        const loginPage = document.getElementById('login-page');
+        const registerPage = document.getElementById('register-page');
+        const dashboard = document.getElementById('dashboard');
+        const adminPanel = document.getElementById('admin-panel');
+        
+        const loginBtn = document.getElementById('login-btn');
+        const getStartedBtn = document.getElementById('get-started-btn');
+        const showRegister = document.getElementById('show-register');
+        const showLogin = document.getElementById('show-login');
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+        
+        const userMenu = document.getElementById('user-menu');
+        const userDropdown = document.getElementById('user-dropdown');
+        const logoutBtn = document.getElementById('logout-btn');
+        const settingsBtn = document.getElementById('settings-btn');
+        const adminPanelBtn = document.getElementById('admin-panel-btn');
+        const backToDashboard = document.getElementById('back-to-dashboard');
+        
+        const addCertificateBtn = document.getElementById('add-certificate-btn');
+        const addCertificateMainBtn = document.getElementById('add-certificate-main-btn');
+        const addCertificateModal = document.getElementById('add-certificate-modal');
+        const cancelCertificate = document.getElementById('cancel-certificate');
+        const certificateForm = document.getElementById('certificate-form');
+        
+        const settingsModal = document.getElementById('settings-modal');
+        const closeSettings = document.getElementById('close-settings');
+        
+        const shareProfileBtn = document.getElementById('share-profile-btn');
+        const shareProfileModal = document.getElementById('share-profile-modal');
+        const copyUrlBtn = document.getElementById('copy-url');
+        const downloadQrBtn = document.getElementById('download-qr');
+        const openQrBtn = document.getElementById('open-qr');
+        
+        const themeToggles = document.querySelectorAll('#theme-toggle, #dashboard-theme-toggle, #admin-theme-toggle');
+        const languageToggles = document.querySelectorAll('#language-toggle, #dashboard-language-toggle, #admin-language-toggle');
+        const themeOptions = document.querySelectorAll('.theme-option');
+        const languageOptions = document.querySelectorAll('.language-option');
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        
+        const certificatesList = document.getElementById('certificates-list');
+        const noCertificatesMessage = document.getElementById('no-certificates-message');
+        
+        const pendingCertificatesList = document.getElementById('pending-certificates-list');
+        const noPendingCertificates = document.getElementById('no-pending-certificates');
+        const usersList = document.getElementById('users-list');
+        const userSearch = document.getElementById('user-search');
+        
+        // استمع لأحداث النقر
+        document.addEventListener('DOMContentLoaded', function() {
+            // أحداث التنقل بين الصفحات
+            loginBtn.addEventListener('click', showLoginPage);
+            getStartedBtn.addEventListener('click', showLoginPage);
+            showRegister.addEventListener('click', showRegisterPage);
+            showLogin.addEventListener('click', showLoginPage);
+            
+            // أحداث النماذج
+            loginForm.addEventListener('submit', handleLogin);
+            registerForm.addEventListener('submit', handleRegister);
+            certificateForm.addEventListener('submit', handleAddCertificate);
+            
+            // أحداث الأزرار
+            logoutBtn.addEventListener('click', handleLogout);
+            settingsBtn.addEventListener('click', showSettingsModal);
+            adminPanelBtn.addEventListener('click', showAdminPanel);
+            backToDashboard.addEventListener('click', showDashboard);
+            
+            addCertificateBtn.addEventListener('click', showAddCertificateModal);
+            addCertificateMainBtn.addEventListener('click', showAddCertificateModal);
+            cancelCertificate.addEventListener('click', hideAddCertificateModal);
+            
+            closeSettings.addEventListener('click', hideSettingsModal);
+            
+            shareProfileBtn.addEventListener('click', showShareProfileModal);
+            copyUrlBtn.addEventListener('click', copyProfileUrl);
+            downloadQrBtn.addEventListener('click', downloadQRCode);
+            openQrBtn.addEventListener('click', openQRCode);
+            
+            // أحداث القوائم المنسدلة
+            userMenu.addEventListener('click', toggleUserDropdown);
+            
+            // أحداث المظهر
+            themeToggles.forEach(toggle => {
+                toggle.addEventListener('click', toggleDarkMode);
+            });
+            
+            languageToggles.forEach(toggle => {
+                toggle.addEventListener('click', toggleLanguage);
+            });
+            
+            themeOptions.forEach(option => {
+                option.addEventListener('click', changeThemeColor);
+            });
+            
+            languageOptions.forEach(option => {
+                option.addEventListener('click', changeLanguage);
+            });
+            
+            darkModeToggle.addEventListener('change', toggleDarkModeFromSwitch);
+            
+            // أحداث البحث
+            userSearch.addEventListener('input', filterUsers);
+            
+            // تحميل البيانات الأولية
+            checkAuthState();
+            generateQRCode();
+        });
+        
+        // التحقق من حالة المصادقة
+        async function checkAuthState() {
+            const { data: { user } } = await supabase.auth.getUser();
+            
+            if (user) {
+                currentUser = user;
+                await loadUserData();
+                showDashboard();
+            } else {
+                showLandingPage();
+            }
+        }
+        
+        // تحميل بيانات المستخدم
+        async function loadUserData() {
+            // جلب بيانات المستخدم من قاعدة البيانات
+            const { data: profile, error } = await supabase
+                .from('profiles')
+                .select('*')
+                .eq('id', currentUser.id)
+                .single();
+                
+            if (profile) {
+                document.getElementById('user-name').textContent = profile.full_name;
+                document.getElementById('profile-name').textContent = profile.full_name;
+                document.getElementById('profile-role').textContent = profile.role || 'لم يتم تحديد الدور';
+                
+                isAdmin = profile.is_admin || false;
+                
+                if (isAdmin) {
+                    document.getElementById('admin-panel-btn').classList.remove('hidden');
+                    await loadAdminData();
+                } else {
+                    document.getElementById('admin-panel-btn').classList.add('hidden');
+                }
+            }
+            
+            // جلب الشهادات
+            await loadCertificates();
+        }
+        
+        // تحميل الشهادات
+        async function loadCertificates() {
+            const { data, error } = await supabase
+                .from('certificates')
+                .select('*')
+                .eq('user_id', currentUser.id)
+                .order('created_at', { ascending: false });
+                
+            if (data) {
+                certificates = data;
+                renderCertificates();
+                
+                // تحديث العدادات
+                const acceptedCount = certificates.filter(c => c.status === 'approved').length;
+                const pendingCount = certificates.filter(c => c.status === 'pending').length;
+                
+                document.getElementById('certificates-count').textContent = `${certificates.length}/10`;
+                document.getElementById('accepted-count').textContent = acceptedCount;
+                document.getElementById('pending-count').textContent = pendingCount;
+            }
+        }
+        
+        // تحميل بيانات الأدمن
+        async function loadAdminData() {
+            // جلب الشهادات المعلقة
+            const { data: pendingData, error: pendingError } = await supabase
+                .from('certificates')
+                .select('*, profiles(full_name, email)')
+                .eq('status', 'pending')
+                .order('created_at', { ascending: false });
+                
+            if (pendingData) {
+                pendingCertificates = pendingData;
+                renderPendingCertificates();
+            }
+            
+            // جلب المستخدمين
+            const { data: usersData, error: usersError } = await supabase
+                .from('profiles')
+                .select('id, full_name, email, role, is_admin, created_at')
+                .order('created_at', { ascending: false });
+                
+            if (usersData) {
+                users = usersData;
+                renderUsers();
+            }
+        }
+        
+        // عرض الشهادات
+        function renderCertificates() {
+            certificatesList.innerHTML = '';
+            
+            if (certificates.length === 0) {
+                noCertificatesMessage.classList.remove('hidden');
+                return;
+            }
+            
+            noCertificatesMessage.classList.add('hidden');
+            
+            certificates.forEach(certificate => {
+                const certificateElement = document.createElement('div');
+                certificateElement.className = 'bg-gray-50 dark:bg-gray-700 rounded-lg p-4 flex items-start space-x-4 space-x-reverse theme-transition';
+                
+                let statusBadge = '';
+                if (certificate.status === 'approved') {
+                    statusBadge = '<span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full"><span class="ar-text">مقبولة</span><span class="en-text hidden">Approved</span></span>';
+                } else if (certificate.status === 'pending') {
+                    statusBadge = '<span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full"><span class="ar-text">قيد المراجعة</span><span class="en-text hidden">Pending</span></span>';
+                } else {
+                    statusBadge = '<span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full"><span class="ar-text">مرفوضة</span><span class="en-text hidden">Rejected</span></span>';
+                }
+                
+                certificateElement.innerHTML = `
+                    <div class="flex-shrink-0 w-16 h-16 bg-primary bg-opacity-10 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-certificate text-primary text-xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-gray-800 dark:text-white">${certificate.title}</h3>
+                            ${statusBadge}
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-2">${certificate.issuer} • ${new Date(certificate.issue_date).toLocaleDateString('ar-EG')}</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">${certificate.description || ''}</p>
+                        ${certificate.skills ? `
+                        <div class="mt-2 flex flex-wrap gap-1">
+                            ${certificate.skills.split(',').map(skill => `
+                                <span class="bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-300 text-xs px-2 py-1 rounded">${skill.trim()}</span>
+                            `).join('')}
+                        </div>
+                        ` : ''}
+                    </div>
+                `;
+                
+                certificatesList.appendChild(certificateElement);
+            });
+        }
+        
+        // عرض الشهادات المعلقة (للأدمن)
+        function renderPendingCertificates() {
+            pendingCertificatesList.innerHTML = '';
+            
+            if (pendingCertificates.length === 0) {
+                noPendingCertificates.classList.remove('hidden');
+                return;
+            }
+            
+            noPendingCertificates.classList.add('hidden');
+            
+            pendingCertificates.forEach(certificate => {
+                const certificateElement = document.createElement('div');
+                certificateElement.className = 'bg-gray-50 dark:bg-gray-700 rounded-lg p-4 theme-transition';
+                
+                certificateElement.innerHTML = `
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <h3 class="font-bold text-gray-800 dark:text-white">${certificate.title}</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">${certificate.issuer}</p>
+                        </div>
+                        <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">
+                            <span class="ar-text">قيد المراجعة</span>
+                            <span class="en-text hidden">Pending</span>
+                        </span>
+                    </div>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm mb-3">${certificate.description || ''}</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-600 dark:text-gray-400 text-sm">
+                            <span class="ar-text">مقدم من:</span>
+                            <span class="en-text hidden">Submitted by:</span>
+                            ${certificate.profiles.full_name} (${certificate.profiles.email})
+                        </span>
+                        <div class="flex space-x-2 space-x-reverse">
+                            <button class="approve-certificate bg-green-500 text-white px-3 py-1 rounded text-sm hover:bg-green-600 transition" data-id="${certificate.id}">
+                                <span class="ar-text">قبول</span>
+                                <span class="en-text hidden">Approve</span>
+                            </button>
+                            <button class="reject-certificate bg-red-500 text-white px-3 py-1 rounded text-sm hover:bg-red-600 transition" data-id="${certificate.id}">
+                                <span class="ar-text">رفض</span>
+                                <span class="en-text hidden">Reject</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                pendingCertificatesList.appendChild(certificateElement);
+            });
+            
+            // إضافة مستمعي الأحداث للأزرار
+            document.querySelectorAll('.approve-certificate').forEach(button => {
+                button.addEventListener('click', function() {
+                    approveCertificate(this.getAttribute('data-id'));
+                });
+            });
+            
+            document.querySelectorAll('.reject-certificate').forEach(button => {
+                button.addEventListener('click', function() {
+                    rejectCertificate(this.getAttribute('data-id'));
+                });
+            });
+        }
+        
+        // عرض المستخدمين (للأدمن)
+        function renderUsers() {
+            usersList.innerHTML = '';
+            
+            users.forEach(user => {
+                const userElement = document.createElement('div');
+                userElement.className = 'bg-gray-50 dark:bg-gray-700 rounded-lg p-4 theme-transition';
+                
+                const adminBadge = user.is_admin ? 
+                    '<span class="bg-primary text-white text-xs px-2 py-1 rounded-full"><span class="ar-text">أدمن</span><span class="en-text hidden">Admin</span></span>' : 
+                    '';
+                
+                userElement.innerHTML = `
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <h3 class="font-bold text-gray-800 dark:text-white">${user.full_name}</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">${user.email}</p>
+                        </div>
+                        ${adminBadge}
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-600 dark:text-gray-400 text-sm">${user.role || 'لم يتم تحديد الدور'}</span>
+                        ${!user.is_admin ? `
+                        <button class="promote-user bg-primary text-white px-3 py-1 rounded text-sm hover:bg-opacity-90 transition" data-id="${user.id}">
+                            <span class="ar-text">ترقية لأدمن</span>
+                            <span class="en-text hidden">Promote to Admin</span>
+                        </button>
+                        ` : ''}
+                    </div>
+                `;
+                
+                usersList.appendChild(userElement);
+            });
+            
+            // إضافة مستمعي الأحداث لأزرار الترقية
+            document.querySelectorAll('.promote-user').forEach(button => {
+                button.addEventListener('click', function() {
+                    promoteUser(this.getAttribute('data-id'));
+                });
+            });
+        }
+        
+        // تصفية المستخدمين
+        function filterUsers() {
+            const searchTerm = userSearch.value.toLowerCase();
+            const userElements = usersList.querySelectorAll('.bg-gray-50');
+            
+            userElements.forEach(element => {
+                const userName = element.querySelector('h3').textContent.toLowerCase();
+                const userEmail = element.querySelector('p').textContent.toLowerCase();
+                
+                if (userName.includes(searchTerm) || userEmail.includes(searchTerm)) {
+                    element.classList.remove('hidden');
+                } else {
+                    element.classList.add('hidden');
+                }
+            });
+        }
+        
+        // معالجة تسجيل الدخول
+        async function handleLogin(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email,
+                password
+            });
+            
+            if (error) {
+                alert('خطأ في تسجيل الدخول: ' + error.message);
+            } else {
+                currentUser = data.user;
+                await loadUserData();
+                showDashboard();
+            }
+        }
+        
+        // معالجة التسجيل
+        async function handleRegister(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('register-name').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            
+            const { data, error } = await supabase.auth.signUp({
+                email,
+                password,
+                options: {
+                    data: {
+                        full_name: name
+                    }
+                }
+            });
+            
+            if (error) {
+                alert('خطأ في التسجيل: ' + error.message);
+            } else {
+                alert('تم إنشاء الحساب بنجاح! يرجى التحقق من بريدك الإلكتروني لتأكيد الحساب.');
+                showLoginPage();
+            }
+        }
+        
+        // معالجة إضافة شهادة
+        async function handleAddCertificate(e) {
+            e.preventDefault();
+            
+            if (certificates.length >= 10) {
+                alert('لقد وصلت إلى الحد الأقصى لعدد الشهادات (10). لا يمكنك إضافة المزيد.');
+                return;
+            }
+            
+            const title = document.getElementById('certificate-title').value;
+            const issuer = document.getElementById('certificate-issuer').value;
+            const date = document.getElementById('certificate-date').value;
+            const verifyUrl = document.getElementById('certificate-verify-url').value;
+            const skills = document.getElementById('certificate-skills').value;
+            const description = document.getElementById('certificate-description').value;
+            const file = document.getElementById('certificate-file').files[0];
+            
+            // رفع الملف إذا تم اختياره
+            let fileUrl = null;
+            if (file) {
+                const fileName = `${currentUser.id}/${Date.now()}_${file.name}`;
+                const { data: uploadData, error: uploadError } = await supabase.storage
+                    .from('certificates')
+                    .upload(fileName, file);
+                    
+                if (uploadError) {
+                    alert('خطأ في رفع الملف: ' + uploadError.message);
+                    return;
+                }
+                
+                const { data: urlData } = supabase.storage
+                    .from('certificates')
+                    .getPublicUrl(fileName);
+                    
+                fileUrl = urlData.publicUrl;
+            }
+            
+            // إضافة الشهادة إلى قاعدة البيانات
+            const { data, error } = await supabase
+                .from('certificates')
+                .insert([
+                    {
+                        user_id: currentUser.id,
+                        title,
+                        issuer,
+                        issue_date: date,
+                        verify_url: verifyUrl,
+                        skills,
+                        description,
+                        file_url: fileUrl,
+                        status: 'pending'
+                    }
+                ]);
+                
+            if (error) {
+                alert('خطأ في إضافة الشهادة: ' + error.message);
+            } else {
+                alert('تم إضافة الشهادة بنجاح! وهي الآن قيد المراجعة من قبل الأدمن.');
+                hideAddCertificateModal();
+                await loadCertificates();
+                certificateForm.reset();
+            }
+        }
+        
+        // قبول شهادة (للأدمن)
+        async function approveCertificate(certificateId) {
+            const { data, error } = await supabase
+                .from('certificates')
+                .update({ status: 'approved' })
+                .eq('id', certificateId);
+                
+            if (error) {
+                alert('خطأ في قبول الشهادة: ' + error.message);
+            } else {
+                await loadAdminData();
+            }
+        }
+        
+        // رفض شهادة (للأدمن)
+        async function rejectCertificate(certificateId) {
+            const { data, error } = await supabase
+                .from('certificates')
+                .update({ status: 'rejected' })
+                .eq('id', certificateId);
+                
+            if (error) {
+                alert('خطأ في رفض الشهادة: ' + error.message);
+            } else {
+                await loadAdminData();
+            }
+        }
+        
+        // ترقية مستخدم لأدمن (للأدمن)
+        async function promoteUser(userId) {
+            const { data, error } = await supabase
+                .from('profiles')
+                .update({ is_admin: true })
+                .eq('id', userId);
+                
+            if (error) {
+                alert('خطأ في ترقية المستخدم: ' + error.message);
+            } else {
+                await loadAdminData();
+            }
+        }
+        
+        // معالجة تسجيل الخروج
+        async function handleLogout() {
+            await supabase.auth.signOut();
+            currentUser = null;
+            isAdmin = false;
+            showLandingPage();
+        }
+        
+        // تبديل القائمة المنسدلة للمستخدم
+        function toggleUserDropdown() {
+            userDropdown.classList.toggle('hidden');
+        }
+        
+        // إغلاق القوائم المنسدلة عند النقر خارجها
+        document.addEventListener('click', function(e) {
+            if (!userMenu.contains(e.target)) {
+                userDropdown.classList.add('hidden');
+            }
+        });
+        
+        // عرض الصفحات
+        function showLandingPage() {
+            landingPage.classList.remove('hidden');
+            loginPage.classList.add('hidden');
+            registerPage.classList.add('hidden');
+            dashboard.classList.add('hidden');
+            adminPanel.classList.add('hidden');
+        }
+        
+        function showLoginPage() {
+            landingPage.classList.add('hidden');
+            loginPage.classList.remove('hidden');
+            registerPage.classList.add('hidden');
+            dashboard.classList.add('hidden');
+            adminPanel.classList.add('hidden');
+        }
+        
+        function showRegisterPage() {
+            landingPage.classList.add('hidden');
+            loginPage.classList.add('hidden');
+            registerPage.classList.remove('hidden');
+            dashboard.classList.add('hidden');
+            adminPanel.classList.add('hidden');
+        }
+        
+        function showDashboard() {
+            landingPage.classList.add('hidden');
+            loginPage.classList.add('hidden');
+            registerPage.classList.add('hidden');
+            dashboard.classList.remove('hidden');
+            adminPanel.classList.add('hidden');
+        }
+        
+        function showAdminPanel() {
+            landingPage.classList.add('hidden');
+            loginPage.classList.add('hidden');
+            registerPage.classList.add('hidden');
+            dashboard.classList.add('hidden');
+            adminPanel.classList.remove('hidden');
+        }
+        
+        function showAddCertificateModal() {
+            addCertificateModal.classList.remove('hidden');
+        }
+        
+        function hideAddCertificateModal() {
+            addCertificateModal.classList.add('hidden');
+            certificateForm.reset();
+        }
+        
+        function showSettingsModal() {
+            settingsModal.classList.remove('hidden');
+        }
+        
+        function hideSettingsModal() {
+            settingsModal.classList.add('hidden');
+        }
+        
+        function showShareProfileModal() {
+            shareProfileModal.classList.remove('hidden');
+        }
+        
+        // توليد QR Code
+        function generateQRCode() {
+            const qrcodeElement = document.getElementById('qrcode');
+            const profileUrl = document.getElementById('profile-url').value;
+            
+            QRCode.toCanvas(qrcodeElement, profileUrl, {
+                width: 200,
+                margin: 1,
+                color: {
+                    dark: '#000000',
+                    light: '#FFFFFF'
+                }
+            }, function(error) {
+                if (error) console.error(error);
+            });
+        }
+        
+        // نسخ رابط البروفايل
+        function copyProfileUrl() {
+            const profileUrl = document.getElementById('profile-url');
+            profileUrl.select();
+            document.execCommand('copy');
+            
+            // تغيير نص الزر مؤقتًا
+            const originalText = copyUrlBtn.innerHTML;
+            copyUrlBtn.innerHTML = '<span class="ar-text">تم النسخ!</span><span class="en-text hidden">Copied!</span>';
+            
+            setTimeout(() => {
+                copyUrlBtn.innerHTML = originalText;
+            }, 2000);
+        }
+        
+        // تحميل QR Code
+        function downloadQRCode() {
+            const canvas = document.querySelector('#qrcode canvas');
+            const link = document.createElement('a');
+            link.download = 'profile-qr.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+        
+        // فتح QR Code في نافذة جديدة
+        function openQRCode() {
+            const canvas = document.querySelector('#qrcode canvas');
+            const image = canvas.toDataURL('image/png');
+            const newWindow = window.open();
+            newWindow.document.write(`<img src="${image}" alt="QR Code">`);
+        }
+        
+        // تبديل الوضع الداكن
+        function toggleDarkMode() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('darkMode', isDark);
+            
+            // تحديث أيقونة الزر
+            const icons = document.querySelectorAll('#theme-toggle i, #dashboard-theme-toggle i, #admin-theme-toggle i');
+            icons.forEach(icon => {
+                icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+            });
+            
+            // تحديث التبديل في الإعدادات
+            darkModeToggle.checked = isDark;
+        }
+        
+        function toggleDarkModeFromSwitch() {
+            const isDark = darkModeToggle.checked;
+            
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+            
+            localStorage.setItem('darkMode', isDark);
+            
+            // تحديث أيقونات الأزرار
+            const icons = document.querySelectorAll('#theme-toggle i, #dashboard-theme-toggle i, #admin-theme-toggle i');
+            icons.forEach(icon => {
+                icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+            });
+        }
+        
+        // تبديل اللغة
+        function toggleLanguage() {
+            const isEnglish = document.querySelector('.en-text').classList.toggle('hidden');
+            document.querySelector('.ar-text').classList.toggle('hidden');
+            
+            localStorage.setItem('language', isEnglish ? 'en' : 'ar');
+            
+            // تحديث نص أزرار اللغة
+            const languageButtons = document.querySelectorAll('#language-toggle span, #dashboard-language-toggle span, #admin-language-toggle span');
+            languageButtons.forEach(button => {
+                button.textContent = isEnglish ? 'AR' : 'EN';
+            });
+            
+            // تحديث أزرار اختيار اللغة في الإعدادات
+            document.querySelectorAll('.language-option').forEach(button => {
+                button.classList.remove('border-primary', 'text-primary');
+                button.classList.add('border-gray-300', 'dark:border-gray-600', 'text-gray-700', 'dark:text-gray-300');
+            });
+            
+            if (isEnglish) {
+                document.querySelector('.language-option[data-lang="en"]').classList.add('border-primary', 'text-primary');
+                document.querySelector('.language-option[data-lang="en"]').classList.remove('border-gray-300', 'dark:border-gray-600', 'text-gray-700', 'dark:text-gray-300');
+            } else {
+                document.querySelector('.language-option[data-lang="ar"]').classList.add('border-primary', 'text-primary');
+                document.querySelector('.language-option[data-lang="ar"]').classList.remove('border-gray-300', 'dark:border-gray-600', 'text-gray-700', 'dark:text-gray-300');
+            }
+        }
+        
+        // تغيير لون السمة
+        function changeThemeColor(e) {
+            const theme = e.target.getAttribute('data-theme');
+            document.body.setAttribute('data-theme', theme);
+            localStorage.setItem('themeColor', theme);
+            
+            // إضافة حد للون المحدد
+            themeOptions.forEach(option => {
+                option.classList.remove('border-2', 'border-primary');
+            });
+            e.target.classList.add('border-2', 'border-primary');
+        }
+        
+        // تغيير اللغة من الإعدادات
+        function changeLanguage(e) {
+            const lang = e.target.getAttribute('data-lang');
+            
+            // إزالة التحديد من جميع الأزرار
+            document.querySelectorAll('.language-option').forEach(button => {
+                button.classList.remove('border-primary', 'text-primary');
+                button.classList.add('border-gray-300', 'dark:border-gray-600', 'text-gray-700', 'dark:text-gray-300');
+            });
+            
+            // إضافة التحديد للزر المختار
+            e.target.classList.add('border-primary', 'text-primary');
+            e.target.classList.remove('border-gray-300', 'dark:border-gray-600', 'text-gray-700', 'dark:text-gray-300');
+            
+            // تطبيق اللغة
+            if (lang === 'en') {
+                document.querySelector('.en-text').classList.remove('hidden');
+                document.querySelector('.ar-text').classList.add('hidden');
+            } else {
+                document.querySelector('.en-text').classList.add('hidden');
+                document.querySelector('.ar-text').classList.remove('hidden');
+            }
+            
+            localStorage.setItem('language', lang);
+            
+            // تحديث نص أزرار اللغة
+            const languageButtons = document.querySelectorAll('#language-toggle span, #dashboard-language-toggle span, #admin-language-toggle span');
+            languageButtons.forEach(button => {
+                button.textContent = lang === 'en' ? 'AR' : 'EN';
+            });
+        }
+        
+        // تحميل التفضيلات المحفوظة
+        function loadPreferences() {
+            // تحميل وضع التصميم
+            const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+            if (savedDarkMode) {
+                document.documentElement.classList.add('dark');
+                darkModeToggle.checked = true;
+                
+                const icons = document.querySelectorAll('#theme-toggle i, #dashboard-theme-toggle i, #admin-theme-toggle i');
+                icons.forEach(icon => {
+                    icon.className = 'fas fa-sun';
+                });
+            }
+            
+            // تحميل لون السمة
+            const savedThemeColor = localStorage.getItem('themeColor') || 'blue';
+            document.body.setAttribute('data-theme', savedThemeColor);
+            
+            themeOptions.forEach(option => {
+                if (option.getAttribute('data-theme') === savedThemeColor) {
+                    option.classList.add('border-2', 'border-primary');
+                }
+            });
+            
+            // تحميل اللغة
+            const savedLanguage = localStorage.getItem('language') || 'ar';
+            if (savedLanguage === 'en') {
+                document.querySelector('.en-text').classList.remove('hidden');
+                document.querySelector('.ar-text').classList.add('hidden');
+                
+                const languageButtons = document.querySelectorAll('#language-toggle span, #dashboard-language-toggle span, #admin-language-toggle span');
+                languageButtons.forEach(button => {
+                    button.textContent = 'AR';
+                });
+                
+                document.querySelector('.language-option[data-lang="en"]').classList.add('border-primary', 'text-primary');
+                document.querySelector('.language-option[data-lang="en"]').classList.remove('border-gray-300', 'dark:border-gray-600', 'text-gray-700', 'dark:text-gray-300');
+            }
+        }
+        
+        // تحميل التفضيلات عند بدء التشغيل
+        loadPreferences();
+    </script>
+</body>
+  </html>
